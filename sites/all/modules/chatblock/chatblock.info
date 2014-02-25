@@ -1,0 +1,13 @@
+name = Chatblock
+description = Provides an on site chat, located in a block.
+core = 7.x
+
+files[] = chatblock.admin.inc
+configure = admin/structure/chatblock
+
+; Information added by drupal.org packaging script on 2013-01-16
+version = "7.x-1.2"
+core = "7.x"
+project = "chatblock"
+datestamp = "1358329811"
+

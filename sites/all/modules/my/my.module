@@ -1,0 +1,131 @@
+<?php
+/**
+ * implement hook_menu
+ */
+function my_menu() {
+    $items = array();
+    $items['lay_tin'] = array(
+        'title' => t('content'),
+        'page callback' => 'get_content',
+        'access arguments' => 'administer content',
+        'access callback' => false,
+    );
+    $items['admin/config/option_get'] = array(
+        'title' => t('Lựa chọn giá trị đổ vào'),
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('get_value_term_cofig'),
+        'description' => t('Lua chon gia tri de du lieu do vao'),
+        'access arguments' => 'access content',
+        'access callback' => TRUE,
+    );
+     $items['question'] = array(
+        'title' => t('select term to fill'),
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('question_user'),
+        'access arguments' => array('access content'),
+        'weight' => 10,
+        'type' => MENU_LOCAL_TASK,
+    );
+    $items['admin/config/auto'] = array(
+      'title' => 'Example RSS feed',
+      'page callback' => 'my_test',
+      'access arguments' => 'access content',
+      'access callback' => TRUE
+    );
+
+    return $items;
+}
+
+
+function question_user() {
+  $form = array();
+  $form['question'] = array(
+    '#type' => 'textarea',
+    '#attributes' => array('placeholder' => 'Username'),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Đăng'
+  );
+  return $form;
+}
+
+function get_value_term_cofig($form, &$form_state) {
+    $form['get_value_term'] = array(
+        '#title' => t('Global setting'),
+        '#type' => 'fieldset',
+        '#collapsible' => TRUE,
+    );
+    $form['get_value_term']['get_name'] = array(
+        '#title' => t('Lựa chọn giá trị'),
+        '#type' => 'select',
+        '#default_value' => variable_get('get_name', 'select'),
+        '#options' => return_term(),
+    );
+    return system_settings_form($form);
+}
+
+function return_term() {
+    $all= taxonomy_get_tree(1);
+    $term = array();
+    foreach($all as $k ) {
+        $term[$k->tid] =  $k -> name;
+    }
+    return $term;
+}
+
+function get_content() {
+  //$term = variable_get(get_value_term_cofig);
+  print '1234345';
+  die;
+   // db_set_active('crawler');
+    $result = db_select('news', 'n')
+        ->fields('n',array('id','name','brief','description','image_url'))
+        ->execute();
+  //  db_set_active('default');
+ while ($record = $result->fetchAssoc()) {
+         $node = new stdClass;
+         $node->type = 'article';
+         $node->status = 1;
+         $node->uid = 1404;
+         $node->title = $record['name'];
+         $node->promote = 1;
+         $node->created = strtotime("now");
+         $node->pathauto_perform_alias = TRUE;
+
+         $url = 'http://tinhta.com/laytin/'.$record['image_url'];
+         $file_info = system_retrieve_file($url, 'public://pictures/', TRUE);
+         if($file_info->fid) {
+             $node->field_image[LANGUAGE_NONE]['0']['fid'] = $file_info->fid;//assign fid
+             $node->field_image[LANGUAGE_NONE]['0']['filename'] = $file_info->filename;
+             $node->field_image[LANGUAGE_NONE]['0']['uri'] = $file_info->uri;
+             $node->field_image[LANGUAGE_NONE]['0']['filemime'] = $file_info->filemime;
+             $node->field_image[LANGUAGE_NONE]['0']['title'] = $record['name'];
+             $node->field_image[LANGUAGE_NONE]['0']['alt'] = $record['name'];
+         }
+
+         $node->field_chuyen_muc[LANGUAGE_NONE]['0']['tid'] = 896;
+         //$node->field_chuyen_muc[LANGUAGE_NONE][0]['taxonomy_term']->name = 'Làm ??p';
+         //$node->field_chuyen_muc[LANGUAGE_NONE]['0']['taxonomy_term']->vid = 2;
+         //$node->field_chuyen_muc[LANGUAGE_NONE]['0']['taxonomy_term']->tid = 894;
+
+         $node->timestamp = strtotime("now");
+         $node->sticky = 0;
+     	 $node->language = LANGUAGE_NONE;
+
+         $teaser = $record['brief'];
+         if(empty($teaser)) {
+           $node ->body['und'][0]['summary'] = drupal_substr(strip_tags($record['description']),0,300);
+         }
+		else {
+	    $node->body['und'][0]['summary'] =  $teaser;
+		}
+         $node->body['und'][0]['value'] = $record['description'];
+         $node->body['und'][0]['format'] = 'filtered_html';
+         $node->revision = 0;
+
+         node_save($node);
+ }
+  die('Đã lấy xong tin');
+}
+

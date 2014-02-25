@@ -1,0 +1,124 @@
+<?php
+/**
+ * implement hook_menu
+ */
+function my_menu() {
+  $items = array();
+    $items['get_content'] = array(
+        'title' => t('content'),
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('my_fill_data'),
+        'access arguments' => 'administra content',
+        'access callback' => TRUE,
+    );
+    return $items;
+}
+
+function my_fill_data() {
+  $form = array();
+  $form['get_value_term'] = array(
+    '#title' => t('Global setting'),
+    '#type' => 'fieldset',
+    '#collapsible' => TRUE,
+  );
+
+  $form['get_value_term']['get_name'] = array(
+    '#title' => t('Lua chon term'),
+    '#type' => 'select',
+    '#default_value' => variable_get('get_name', 1),
+    '#options' => return_term_cat(),
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Lấy tin'),
+  );
+  return $form;
+}
+
+function my_fill_data_submit($form, &$form_state)  {
+  $term =   ($form_state['values']['get_name']);
+  get_content($term);
+}
+function return_term_cat() {
+    $all= taxonomy_get_tree(2);
+    $term = array();
+    foreach($all as $k ) {
+        $term[$k->tid] =  $k -> name;
+    }
+    return $term;
+}
+
+function return_term_tag() {
+    $all= taxonomy_get_tree(1);
+    $term = array();
+    foreach($all as $k ) {
+        $term[$k->tid] =  $k -> name;
+    }
+    return $term;
+}
+function get_content($term) {
+   // db_set_active('crawler');
+    $result = db_select('news', 'n')
+        ->fields('n',array('id','name','brief','description','image_url'))
+        ->execute();
+  //  db_set_active('default');
+  $i = 0;
+ while ($record = $result->fetchAssoc()) {
+         $node = new stdClass;
+         $node->type = 'article';
+         $node->status = 1;
+         $node->uid = 1404;
+         $node->title = $record['name'];
+         $node->promote = 1;
+         $node->pathauto_perform_alias = TRUE;
+		 $node->comment = 2;
+         if($i<=5) {
+            $node->created = strtotime("now");
+         }
+         else {
+           $time = $i%5;
+           $node->created = strtotime("now") + 86400*$time;
+         }
+         $url = 'http://tinhta.com/laytin/'.$record['image_url'];
+         $file_info = system_retrieve_file($url, 'public://pictures/', TRUE);
+         if($file_info->fid) {
+             $node->field_image[LANGUAGE_NONE]['0']['fid'] = $file_info->fid;//assign fid
+             $node->field_image[LANGUAGE_NONE]['0']['filename'] = $file_info->filename;
+             $node->field_image[LANGUAGE_NONE]['0']['uri'] = $file_info->uri;
+             $node->field_image[LANGUAGE_NONE]['0']['filemime'] = $file_info->filemime;
+             $node->field_image[LANGUAGE_NONE]['0']['title'] = $record['name'];
+             $node->field_image[LANGUAGE_NONE]['0']['alt'] = $record['name'];
+         }
+
+         $node->field_chuyen_muc[LANGUAGE_NONE]['0']['tid'] = $term;
+         $node->field_tags[LANGUAGE_NONE]['0']['tid'] = array_rand(return_term_tag());
+         $node->field_tags[LANGUAGE_NONE]['1']['tid'] = array_rand(return_term_tag());
+         $node->field_tags[LANGUAGE_NONE]['3']['tid'] = array_rand(return_term_tag());
+         $node->field_tags[LANGUAGE_NONE]['4']['tid'] = array_rand(return_term_tag());
+         //$node->field_chuyen_muc[LANGUAGE_NONE][0]['taxonomy_term']->name = 'Làm ??p';
+         //$node->field_chuyen_muc[LANGUAGE_NONE]['0']['taxonomy_term']->vid = 2;
+         //$node->field_chuyen_muc[LANGUAGE_NONE]['0']['taxonomy_term']->tid = 894;
+
+         $node->timestamp = strtotime("now");
+         $node->sticky = 0;
+     	 $node->language = LANGUAGE_NONE;
+
+         $teaser = $record['brief'];
+         if(empty($teaser)) {
+           $node ->body['und'][0]['summary'] = drupal_substr(strip_tags($record['description']),0,300);
+         }
+		else {
+	    $node->body['und'][0]['summary'] =  $teaser;
+		}
+         $node->body['und'][0]['value'] = $record['description'];
+         $node->body['und'][0]['format'] = 'filtered_html';
+         $node->revision = 0;
+
+         node_save($node);
+		 $i ++;
+		 
+ }
+  die('Đã lấy xong tin');
+}
+
