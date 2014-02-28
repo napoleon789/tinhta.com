@@ -6,14 +6,11 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 jQuery(document).ready(function($) {
-	$m = $("img").attr("src");
-	console.log($m);
-       
+    $("#view_home_main_media .mediayt a").append('<div class="overight"> </div>');
 
  $(window).load(function(){
       $(".pane-node-random").sticky({ topSpacing: 20 });
-      $("#quehuong").sticky({ topSpacing: 20});
+      $("#quehuong").sticky({ topSpacing: 20 });
       $(".pane-term-ban-biet").sticky({ topSpacing: 20 });
-     $("#pane-node-random").sticky({ topSpacing: 0 });
     });
 });

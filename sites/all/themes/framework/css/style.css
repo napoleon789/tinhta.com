@@ -128,7 +128,7 @@ th { padding-right: 1em; }
  */
 
 #container {
- 
+
  
 }
 
@@ -630,9 +630,9 @@ margin-bottom: 4px;}
 .xemtiep {float:right;font-size:16px;}
 .xemtiep a {font-size:16px;font-style:italic;}
 .xemtiep a:hover{text-decoration:underline;color:#B73F7C;}
-#view_home_main   .views-row {background:url("../images/back.png") no-repeat center bottom;}
 
-#main {background:white;}
+
+#main {}
 
 #view_home_main   h2.pane-title {boder-bottom:1px solid #e3debc !important;margin-top:10px;}
 
@@ -882,7 +882,7 @@ font-weight: bold;}
 
 }
 .padding_chua {background: #ffffff;}
-.padding {background: #ffffff;}
+.padding {}
 body {
     padding: 0;
     margin: 0;
@@ -902,7 +902,7 @@ a {text-decoration: none;}
     width: 232px;
     float: left;
     margin-right: 10px;
-    border: 1px solid #cbd8d8;
+
     background: #FDF5E6;
     margin-bottom: 1.42857em;
     -webkit-box-shadow: #cbd8d8 0 2px 0 -1px;
@@ -910,6 +910,10 @@ a {text-decoration: none;}
     box-shadow: #cbd8d8 0 2px 0 -1px;
     min-height: 300px;
 	padding-left:0;
+}
+.view-cneter-home .views-row:hover {
+    background-color: #333333;
+    color: #ffffff;
 }
 .view-cneter-home .views-row-last {margin-right: 0;}
 a {  color: #027AC6;}
@@ -1044,6 +1048,7 @@ a {  color: #027AC6;}
 .view_home_main {
     clear: both;
     float: left;
+    margin-left: 10px;
 }
 .view-id-home_top .tieude_home a {
     color: #fa3ca3;
@@ -1278,7 +1283,7 @@ color:#e42e8a;
     color: #fff;
     text-transform: uppercase;
     line-height: 1em;
-    background: #254d8d url(images/random_bg.png) repeat-x left;
+    background: #254d8d url("../images/random_bg.png") repeat-x left;
     background-position: 0px -200px;
     margin: 0;
     padding: 10px;
@@ -1366,3 +1371,34 @@ div.form-item div.password-suggestions {
 }
 .user-picture img{width:60px;}
 .view-node-random {width: 310px;}
+.views-slideshow-cycle-main-frame-row {
+    width: 980px !important;
+}
+#view_home_main_media h2
+{
+    background: #bd0144 url("../images/random_bg.png") repeat-x left;
+    background-position: 0px -300px;
+    margin-top: 0px;
+    padding: 10px;
+    font-size: 1.0em;
+    font-family: Gill Sans MT;
+    font-weight: normal;
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 1em;
+    list-style: none;
+}
+
+#view_home_main_media .mediayt {
+    position: relative;
+}
+.overight {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background:  url("../images/Icon_6-32.png") no-repeat center;
+
+}
