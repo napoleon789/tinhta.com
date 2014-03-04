@@ -479,6 +479,7 @@ ul.secondary a.active {
   clear: both;
   padding: 1.5em 0;
   position: relative;
+    color: #ffffff;
 }
 
 #footer a.feed-icon {
@@ -518,7 +519,11 @@ border-right:none;border-bottom:none;
 }
 .image_home{float:left;}
 #logo img{ height:50px;}
-.region-header {clear:both;width:100%;margin:0 auto;float:left;}
+.region-header {
+    clear:both;width:100%;margin:0 auto;float:left;
+ 
+
+}
 h1#page-title{display:none;}
 .pane-block-1 ul li{display:inline;padding:0 10px;}
 .pane-block-1{margin-top:1em;}
@@ -888,7 +893,7 @@ body {
     margin: 0;
 }
 .region-header {
-    background: #365EE0;
+    background: #950538;
     clear: both;
 }
 .user {background: #433f43;overflow:hidden;padding:2px 0;}
@@ -931,7 +936,7 @@ a {  color: #027AC6;}
 .xemtiep {text-align: right;}
 .view-home-user-sent td {border-bottom: 1px solid #cbd8d8;padding:10px;border-right:1px solid #cbd8d8; }
 .view-home-user-sent table { border-left: 1px solid #cbd8d8;border-top: 1px solid #cbd8d8; }
-.views-field-name a {color: #0a9107;font-weight: bold; }
+.views-field-name a {color: #C20229;font-weight: bold; }
 .form-required {display: none;}
 .captcha {border: none;}
 .captcha img {border: 1px solid red;}
@@ -1183,7 +1188,7 @@ color:#e42e8a;
     list-style: none;
 }
 #footer {
-    background: #365EE0;
+    background: #820430;
     text-align: center;
 }
 #namnu h2{
@@ -1274,8 +1279,8 @@ color:#e42e8a;
     line-height: 1em;
     list-style: none;
 }
-#user_sent h2,
-#all_term h2
+#user_sent h2
+
 {
     font-size: 1em;
     font-family: Gill Sans MT;
@@ -1285,6 +1290,21 @@ color:#e42e8a;
     line-height: 1em;
     background: #254d8d url("../images/random_bg.png") repeat-x left;
     background-position: 0px -200px;
+    margin: 0;
+    padding: 10px;
+    list-style: none;
+    border: none;
+}
+#all_term h2
+{
+    font-size: 1em;
+    font-family: Gill Sans MT;
+    font-weight: normal;
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 1em;
+    background: #254d8d url("../images/random_bg.png") repeat-x left;
+    background-position: 0px -168px;
     margin: 0;
     padding: 10px;
     list-style: none;
@@ -1401,4 +1421,30 @@ div.form-item div.password-suggestions {
     z-index: 1;
     background:  url("../images/Icon_6-32.png") no-repeat center;
 
+}
+ul.nice-menu, ul.nice-menu ul {
+    background: #950538 !important;
+}
+ul.nice-menu a {
+    border-bottom: none !important;
+    line-height: 30px !important;
+    height: 30px !important;
+    padding: 4px 14px !important;
+}
+ul.nice-menu li {
+    border: none !important;
+
+}
+ul.nice-menu-down .menuparent a {
+    padding: 4px 14px !important;
+}
+.h2seo {
+    font-size: 14px;
+    display: none;
+}
+h5 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e3debc;
 }
