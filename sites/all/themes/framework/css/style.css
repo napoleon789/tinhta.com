@@ -98,13 +98,14 @@ p {
 }
 
 a { color: #069; text-decoration: none; }
-
+#namnu a:hover {color: #CF0536;}
 a:visited { color: #309; }
 
 a:hover, a:active, li a.active  { color: #39f; }
+#namnu a:active,#namnu a { color: #004175; }
 .nice-menu  a:active,.nice-menu   li a.active  {color:greenyellow;}
 a:focus { outline: thin dotted; }
-
+.title_home a:hover {color:red;}
 a:hover, a:active { outline: 0; }
 
 /* apply common styling after reset.css */
@@ -143,7 +144,6 @@ th { padding-right: 1em; }
   padding: 0 0px;
   margin:0 auto;
       box-shadow: 0 10px 15px rgba(0, 0, 0, 0.23);
- border-bottom: 3px solid #FF3300;
  overflow:hidden;
 }
 
@@ -477,7 +477,7 @@ ul.secondary a.active {
 
 #footer {
   clear: both;
-  padding: 1.5em 0;
+
   position: relative;
     color: #ffffff;
 }
@@ -576,13 +576,13 @@ padding: 6px 10px;
 }
 .content_main {padding:0 10px 10px 10px;float:left;}
 .right {float:left;margin-left:50px;margin-top:10px;}
-#block-block-3{width:980px;margin:0 auto; padding:0;}
+#block-block-3{background:#950538;margin: 0;}
 #edit-field-chuyen-muc-und {height:150px;}
 li.active a{color:#d02323;}
 .views-field-picture{text-align:center;}
 .pane-print-print-links{text-align:center;}
 .print-mail {font-size:14px;font-weight:bold;}
-#block-block-3 {text-align:center;}
+#block-block-3 {text-align:center;padding: 10px 0;}
 .view-cneter-home h2 {margin:0;border-bottom:none;}
 h1 {color:#027AC6;}
 #node_detail p {margin:0;}
@@ -611,10 +611,10 @@ h1 {color:#027AC6;}
     background: none repeat scroll 0 0 #FFEBCD;
     border: 1px solid #DDA0DD;
     border-radius: 4px;
-    padding-left: 4px;
-    padding-top: 4px;
+    padding: 4px;
 }
 .tag_khac{font-weight: bold;
+    float: left;
 font-size: 13px;
 margin-bottom: 4px;}
 .page-messages  #edit-body-format {display:none;}
@@ -879,8 +879,8 @@ font-weight: bold;}
 .padding_chua,
 .main_user,
 #main,
-.padding_user,
-.region-footer  {
+.padding_user
+ {
     margin: 0 auto;
     padding: 0;
     width: 980px;
@@ -908,7 +908,7 @@ a {text-decoration: none;}
     float: left;
     margin-right: 10px;
 
-    background: #FDF5E6;
+    background: #F8EAF8;
     margin-bottom: 1.42857em;
     -webkit-box-shadow: #cbd8d8 0 2px 0 -1px;
     -moz-box-shadow: #cbd8d8 0 2px 0 -1px;
@@ -916,14 +916,11 @@ a {text-decoration: none;}
     min-height: 300px;
 	padding-left:0;
 }
-.view-cneter-home .views-row:hover {
-    background-color: #333333;
-    color: #ffffff;
-}
+
 .view-cneter-home .views-row-last {margin-right: 0;}
 a {  color: #027AC6;}
 .title_home a {
-    color: #e42e8a;
+    color: #bd0144 ;
     font-size: 14px;
     font-weight: bold;
 }
@@ -1053,7 +1050,6 @@ a {  color: #027AC6;}
 .view_home_main {
     clear: both;
     float: left;
-    margin-left: 10px;
 }
 .view-id-home_top .tieude_home a {
     color: #fa3ca3;
@@ -1188,7 +1184,7 @@ color:#e42e8a;
     list-style: none;
 }
 #footer {
-    background: #820430;
+ 
     text-align: center;
 }
 #namnu h2{
@@ -1201,9 +1197,10 @@ color:#e42e8a;
     color: #0a9107;
 }
 #namnu  .views-row {
-    background: url("../images/bluedot.jpg") no-repeat scroll left 12px transparent;
+    background: url("../images/bluedot.jpg") no-repeat scroll left 20px transparent;
     line-height: 22px;
-    padding: 3px 0 3px 8px;
+    padding: 10px 0 10px 8px;
+    border-bottom: 1px solid rgb(235, 226, 226);
 }
 #term .panel-col-first,
 #node .panel-col-first {
@@ -1442,9 +1439,36 @@ ul.nice-menu-down .menuparent a {
     font-size: 14px;
     display: none;
 }
-h5 {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 4px;
-    border-bottom: 1px solid #e3debc;
+ul.nice-menu ul {border-top:none !important;}
+#comment h3 {margin:0;}
+#block-menu-menu-menu-bottom ul li {
+display:inline;
+padding :0 14px;
+}
+#block-menu-menu-menu-bottom {
+background:#950538;
+margin:0;
+}
+#block-menu-menu-menu-bottom ul {
+padding:6px;
+    background: #923333;
+text-align:center;
+margin:0;
+}
+#block-menu-menu-menu-bottom ul li a {
+color:white;
+
+}
+#block-block-3 p {
+    margin: 0;
+    line-height: 26px;
+}
+#footer.clearfix:after {
+    display: none;
+}
+.tags1
+{
+    margin-top: 12px;
+    margin-left: 8px;
+    float: left;
 }

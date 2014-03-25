@@ -129,3 +129,24 @@ function get_content() {
   die('Đã lấy xong tin');
 }
 
+function my_block_info() {
+  // This example comes from node.module.
+  $blocks['xemtiep'] = array(
+    'info' => t('Xem tiếp mobile'),
+  );
+return $blocks;
+}
+
+function my_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+  case 'xemtiep':
+      $block['content'] = 'mobile_xemtiep';
+      break;
+  }
+  return $block;
+}
+
+function  mobile_xemtiep() {
+  return '1243ertrtr';
+}
